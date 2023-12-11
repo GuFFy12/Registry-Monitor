@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Management;
-using Microsoft.Win32;
 
 namespace Registry_Monitor.RegistryUtils
 {
@@ -13,62 +12,47 @@ namespace Registry_Monitor.RegistryUtils
             RegistryValueChangeEvent
         }
 
-        private readonly MainForm.LoggerDelegate _logger;
-
         private readonly ManagementEventWatcher _watcher;
 
         public readonly RegistryPath RegistryPath;
-        private string _prevValueData;
+        public EventArrivedEventHandler EventArrivedEventHandler;
 
         /**
          * Query registry using WMI.
          * Read more: https://learn.microsoft.com/en-us/dotnet/api/system.management.managementeventwatcher?view=dotnet-plat-ext-8.0
          */
-        public WmiRegistryEventListener(RegistryPath registryPath, MainForm.LoggerDelegate logger)
+        public WmiRegistryEventListener(RegistryPath registryPath, EventArrivedEventHandler eventArrivedEventHandler)
         {
-            _logger = logger;
             RegistryPath = registryPath;
+            EventArrivedEventHandler = eventArrivedEventHandler;
 
             /*
              * Registry query.
              * Read more: https://learn.microsoft.com/en-us/previous-versions/windows/desktop/regprov/system-registry-provider
              * Also we need replace "\" to "\\" (specifics of the query).
              */
-            string query;
+            WqlEventQuery wqlEventQuery;
             switch (RegistryPath.TrackType)
             {
                 case TrackTypes.RegistryKeyChangeEvent:
-                    query = $"SELECT * FROM RegistryKeyChangeEvent WHERE Hive='{RegistryPath.Hive}' AND KeyPath='{RegistryPath.RootPath.Replace("\\", "\\\\")}'";
+                    wqlEventQuery = new WqlEventQuery(
+                        $"SELECT * FROM RegistryKeyChangeEvent WHERE Hive='{RegistryPath.Hive}' AND KeyPath='{RegistryPath.RootPath.Replace("\\", "\\\\")}'");
                     break;
                 case TrackTypes.RegistryTreeChangeEvent:
-                    _prevValueData = Registry.GetValue($"{RegistryPath.Hive}\\{RegistryPath.RootPath}", "", "").ToString();
-
-                    query =
-                        $"SELECT * FROM RegistryTreeChangeEvent WHERE Hive='{RegistryPath.Hive}' AND RootPath='{RegistryPath.RootPath.Replace("\\", "\\\\")}'";
+                    wqlEventQuery = new WqlEventQuery(
+                        $"SELECT * FROM RegistryTreeChangeEvent WHERE Hive='{RegistryPath.Hive}' AND RootPath='{RegistryPath.RootPath.Replace("\\", "\\\\")}'");
                     break;
                 case TrackTypes.RegistryValueChangeEvent:
-                    _prevValueData = Registry.GetValue($"{RegistryPath.Hive}\\{RegistryPath.RootPath}", RegistryPath.Value, "").ToString();
-
-                    query =
-                        $"SELECT * FROM RegistryValueChangeEvent WHERE Hive='{RegistryPath.Hive}' AND KeyPath='{RegistryPath.RootPath.Replace("\\", "\\\\")}' AND ValueName='{RegistryPath.Value.Replace("\\", "\\\\")}'";
+                    wqlEventQuery = new WqlEventQuery(
+                        $"SELECT * FROM RegistryValueChangeEvent WHERE Hive='{RegistryPath.Hive}' AND KeyPath='{RegistryPath.RootPath.Replace("\\", "\\\\")}' AND ValueName='{RegistryPath.Value.Replace("\\", "\\\\")}'");
                     break;
                 default:
-                    _logger($"Unknown track type - {RegistryPath.TrackType}", MainForm.LoggerMessageType.Error);
-                    return;
+                    throw new Exception($"Unknown track type - {RegistryPath.TrackType}");
             }
 
-            try
-            {
-                _watcher = new ManagementEventWatcher(query);
-                _watcher.EventArrived += EventArrived;
-                _watcher.Start();
-            }
-            catch (Exception exception)
-            {
-                _logger(
-                    $"[{RegistryPath.TrackType}] {RegistryPath.Hive}\\{RegistryPath.RootPath}{(RegistryPath.TrackType == TrackTypes.RegistryValueChangeEvent ? $" - {RegistryPath.Value}" : string.Empty)} - {exception.Message}",
-                    MainForm.LoggerMessageType.Error);
-            }
+            _watcher = new ManagementEventWatcher(wqlEventQuery);
+            _watcher.EventArrived += EventArrived;
+            _watcher.Start();
         }
 
         public void Dispose()
@@ -76,26 +60,9 @@ namespace Registry_Monitor.RegistryUtils
             _watcher?.Dispose();
         }
 
-        private void EventArrived(object wmiRegistryEventSender, EventArrivedEventArgs wmiRegistryEventArrivedEventArgs)
+        private void EventArrived(object sender, EventArrivedEventArgs eventArrivedEventArgs)
         {
-            var loggerMessage = $"[{RegistryPath.TrackType}] {RegistryPath.Hive}\\{RegistryPath.RootPath}";
-
-            foreach (var prop in wmiRegistryEventArrivedEventArgs.NewEvent.Properties) loggerMessage += $" [{prop.Name}:{prop.Value}]";
-
-            if (RegistryPath.TrackType != TrackTypes.RegistryTreeChangeEvent)
-            {
-                var valueData = RegistryPath.TrackType == TrackTypes.RegistryKeyChangeEvent
-                    ? Registry.GetValue($"{RegistryPath.Hive}\\{RegistryPath.RootPath}", "", "").ToString()
-                    : Registry.GetValue($"{RegistryPath.Hive}\\{RegistryPath.RootPath}", RegistryPath.Value, "").ToString();
-
-                if (valueData != _prevValueData)
-                {
-                    loggerMessage += $" - '{_prevValueData}'->'{valueData}'";
-                    _prevValueData = valueData;
-                }
-            }
-
-            _logger(loggerMessage);
+            EventArrivedEventHandler?.Invoke(this, eventArrivedEventArgs);
         }
     }
 }

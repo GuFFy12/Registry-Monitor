@@ -7,14 +7,10 @@ namespace Registry_Monitor
 {
     public partial class AddRegistryPath : Form
     {
-        private readonly MainForm.LoggerDelegate _logger;
-
         public RegistryPath RegistryPath;
 
-        public AddRegistryPath(MainForm.LoggerDelegate loggerDelegate)
+        public AddRegistryPath()
         {
-            _logger = loggerDelegate;
-
             InitializeComponent();
 
             trackTypeComboBox.Items.AddRange(Enum.GetValues(typeof(WmiRegistryEventListener.TrackTypes)).Cast<object>().ToArray());
@@ -28,11 +24,13 @@ namespace Registry_Monitor
 
         private void addRegistryPathButton_Click(object sender, EventArgs e)
         {
-            RegistryPath = new RegistryPath((WmiRegistryEventListener.TrackTypes)trackTypeComboBox.SelectedIndex,
-                registryPathTextBox.Text, registryValueTextBox.Text, _logger);
-
-            if (RegistryPath.Error)
+            try
             {
+                RegistryPath = new RegistryPath((WmiRegistryEventListener.TrackTypes)trackTypeComboBox.SelectedIndex, registryPathTextBox.Text, registryValueTextBox.Text);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 RegistryPath = null;
                 return;
             }

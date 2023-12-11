@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Management;
 using System.Windows.Forms;
+using Microsoft.Win32;
 using Registry_Monitor.RegistryUtils;
 
 namespace Registry_Monitor
@@ -43,7 +45,17 @@ namespace Registry_Monitor
                 addRegistryPathButton.Enabled = false;
                 removeAllRegistryPathsButton.Enabled = false;
 
-                foreach (var registryPath in _registryPaths) _wmiRegistryEventListeners.Add(new WmiRegistryEventListener(registryPath, Logger));
+                foreach (var registryPath in _registryPaths)
+                    try
+                    {
+                        _wmiRegistryEventListeners.Add(new WmiRegistryEventListener(registryPath, WmiRegistryWatcherEventArrived));
+                    }
+                    catch (Exception exception)
+                    {
+                        Logger(
+                            $"[{registryPath.TrackType}] {registryPath.Hive}\\{registryPath.RootPath}{(registryPath.TrackType == WmiRegistryEventListener.TrackTypes.RegistryValueChangeEvent ? $" - {registryPath.Value}" : string.Empty)} - {exception.Message}",
+                            LoggerMessageType.Error);
+                    }
 
                 Logger("Start tracking changes...");
             }
@@ -60,12 +72,29 @@ namespace Registry_Monitor
             }
         }
 
+        private void WmiRegistryWatcherEventArrived(object sender, EventArrivedEventArgs eventArrivedEventArgs)
+        {
+            if (!(sender is WmiRegistryEventListener wmiRegistryEventListener)) return;
+
+            var loggerMessage =
+                $"[{wmiRegistryEventListener.RegistryPath.TrackType}] {wmiRegistryEventListener.RegistryPath.Hive}\\{wmiRegistryEventListener.RegistryPath.RootPath}";
+
+            foreach (var prop in eventArrivedEventArgs.NewEvent.Properties) loggerMessage += $" [{prop.Name}:{prop.Value}]";
+
+            if (wmiRegistryEventListener.RegistryPath.TrackType != WmiRegistryEventListener.TrackTypes.RegistryTreeChangeEvent)
+                loggerMessage += $@"[ValueData:{(wmiRegistryEventListener.RegistryPath.TrackType == WmiRegistryEventListener.TrackTypes.RegistryKeyChangeEvent
+                    ? Registry.GetValue($"{wmiRegistryEventListener.RegistryPath.Hive}\\{wmiRegistryEventListener.RegistryPath.RootPath}", "", "").ToString()
+                    : Registry.GetValue($"{wmiRegistryEventListener.RegistryPath.Hive}\\{wmiRegistryEventListener.RegistryPath.RootPath}", wmiRegistryEventListener.RegistryPath.Value, "").ToString())}]";
+
+            Logger(loggerMessage);
+        }
+
         /**
          * Call addRegistryPath form.
          */
         private void addRegistryButton_Click(object sender, EventArgs e)
         {
-            var addRegistryPath = new AddRegistryPath(Logger);
+            var addRegistryPath = new AddRegistryPath();
             addRegistryPath.FormClosed += AddRegistryPath_FormClosed;
             addRegistryPath.ShowDialog();
         }
@@ -117,8 +146,6 @@ namespace Registry_Monitor
             Error,
             Fatal
         }
-
-        public delegate void LoggerDelegate(string message, LoggerMessageType loggerMessageType = LoggerMessageType.Info);
 
         private void Logger(string message, LoggerMessageType loggerMessageType = LoggerMessageType.Info)
         {

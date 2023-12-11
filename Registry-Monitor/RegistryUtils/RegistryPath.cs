@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Security.Principal;
-using Microsoft.Win32;
 
 namespace Registry_Monitor.RegistryUtils
 {
@@ -15,9 +14,6 @@ namespace Registry_Monitor.RegistryUtils
             HKEY_CURRENT_CONFIG
         }
 
-        private readonly MainForm.LoggerDelegate _logger;
-
-        public readonly bool Error;
         public readonly RegistryHives Hive;
         public readonly string RootPath;
         public readonly WmiRegistryEventListener.TrackTypes TrackType;
@@ -26,25 +22,13 @@ namespace Registry_Monitor.RegistryUtils
         /**
          * Validate that registryPathText is actually registry path.
          */
-        public RegistryPath(WmiRegistryEventListener.TrackTypes trackType, string pathText, string valueText, MainForm.LoggerDelegate loggerDelegate)
+        public RegistryPath(WmiRegistryEventListener.TrackTypes trackType, string pathText, string valueText)
         {
-            _logger = loggerDelegate;
-
             var firstSlashIndex = pathText.IndexOf('\\');
-            if (firstSlashIndex == -1)
-            {
-                Error = true;
-                _logger("Failed to parse registry path", MainForm.LoggerMessageType.Error);
-                return;
-            }
+            if (firstSlashIndex == -1) throw new Exception("Failed to parse registry path");
 
             var registryHiveText = pathText.Substring(0, firstSlashIndex).ToUpper();
-            if (!Enum.IsDefined(typeof(RegistryHives), registryHiveText))
-            {
-                Error = true;
-                _logger("Failed to parse registry hive", MainForm.LoggerMessageType.Error);
-                return;
-            }
+            if (!Enum.IsDefined(typeof(RegistryHives), registryHiveText)) throw new Exception("Failed to parse registry hive");
 
             TrackType = trackType;
             Value = valueText;
