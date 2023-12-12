@@ -5,6 +5,7 @@ namespace Registry_Monitor.RegistryUtils
 {
     public class WmiRegistryEventListener : IDisposable
     {
+        // Enumeration representing various registry events to track
         public enum RegistryEvent
         {
             RegistryKeyChangeEvent,
@@ -12,22 +13,25 @@ namespace Registry_Monitor.RegistryUtils
             RegistryValueChangeEvent
         }
 
+        // ManagementEventWatcher instance for monitoring WMI events
         private readonly ManagementEventWatcher _managementEventWatcher;
 
+        // Readonly property representing the registry path associated with this listener
         public readonly RegistryPath RegistryPath;
 
         /**
-         * Query registry using WMI.
-         * Read more: https://learn.microsoft.com/en-us/dotnet/api/system.management.managementeventwatcher?view=dotnet-plat-ext-8.0
+         * Constructor for WmiRegistryEventListener. Initializes the listener with the specified registry path.
+         * Query registry using WMI. Read more: https://learn.microsoft.com/en-us/dotnet/api/system.management.managementeventwatcher?view=dotnet-plat-ext-8.0
          */
         public WmiRegistryEventListener(RegistryPath registryPath)
         {
+            // Set the registry path for this listener
             RegistryPath = registryPath;
 
             /*
              * Registry query.
              * Read more: https://learn.microsoft.com/en-us/previous-versions/windows/desktop/regprov/system-registry-provider
-             * Also we need replace "\" to "\\" (specifics of the query).
+             * Also, we need to replace "\" with "\\" (specifics of the query).
              */
             WqlEventQuery wqlEventQuery;
             switch (RegistryPath.RegistryEvent)
@@ -49,29 +53,37 @@ namespace Registry_Monitor.RegistryUtils
                         $"The registry track type '{RegistryPath.RegistryEvent}' is not handled");
             }
 
+            // Create a new ManagementEventWatcher using the defined WQL query
             _managementEventWatcher = new ManagementEventWatcher(wqlEventQuery);
+            // Attach the EventArrived method as an event handler
             _managementEventWatcher.EventArrived += EventArrived;
         }
 
+        // Implementation of the IDisposable interface to allow proper resource cleanup
         public void Dispose()
         {
             _managementEventWatcher?.Dispose();
         }
 
+        // Start monitoring registry events
         public void Start()
         {
             _managementEventWatcher.Start();
         }
 
+        // Stop monitoring registry events
         public void Stop()
         {
             _managementEventWatcher.Stop();
         }
 
+        // Event handler delegate for handling arrived WMI events
         public event EventArrivedEventHandler EventArrivedEventHandler;
 
+        // Method invoked when a WMI event is received
         private void EventArrived(object sender, EventArrivedEventArgs eventArrivedEventArgs)
         {
+            // Invoke the event handler delegate if it is subscribed
             EventArrivedEventHandler?.Invoke(this, eventArrivedEventArgs);
         }
     }

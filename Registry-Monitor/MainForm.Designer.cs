@@ -58,7 +58,7 @@ namespace Registry_Monitor
             this.startStopWmiRegistryEventListenersButton.Enabled = false;
             this.startStopWmiRegistryEventListenersButton.Location = new System.Drawing.Point(660, 58);
             this.startStopWmiRegistryEventListenersButton.Name = "startStopWmiRegistryEventListenersButton";
-            this.startStopWmiRegistryEventListenersButton.Size = new System.Drawing.Size(120, 73);
+            this.startStopWmiRegistryEventListenersButton.Size = new System.Drawing.Size(122, 63);
             this.startStopWmiRegistryEventListenersButton.TabIndex = 4;
             this.startStopWmiRegistryEventListenersButton.Text = "Start wmi registry event listeners";
             this.startStopWmiRegistryEventListenersButton.UseVisualStyleBackColor = true;
@@ -85,9 +85,9 @@ namespace Registry_Monitor
             //
             this.saveLogCheckBox.Checked = true;
             this.saveLogCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.saveLogCheckBox.Location = new System.Drawing.Point(660, 137);
+            this.saveLogCheckBox.Location = new System.Drawing.Point(660, 127);
             this.saveLogCheckBox.Name = "saveLogCheckBox";
-            this.saveLogCheckBox.Size = new System.Drawing.Size(122, 30);
+            this.saveLogCheckBox.Size = new System.Drawing.Size(122, 40);
             this.saveLogCheckBox.TabIndex = 19;
             this.saveLogCheckBox.Text = "Save log to a file";
             this.saveLogCheckBox.UseVisualStyleBackColor = true;
