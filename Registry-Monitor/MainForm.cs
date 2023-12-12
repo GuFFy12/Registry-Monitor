@@ -39,8 +39,6 @@ namespace Registry_Monitor
          */
         private void startStopWmiRegistryEventListenersButton_Click(object sender, EventArgs e)
         {
-            if (_wmiRegistryEventListeners.Count == 0) return;
-
             if (_wmiRegistryEventListenersStopped)
             {
                 startStopWmiRegistryEventListenersButton.Text = "Stop wmi registry event listeners";
@@ -112,6 +110,9 @@ namespace Registry_Monitor
         {
             if (!(sender is AddWmiRegistryEventListener addWmiRegistryEventListener) || addWmiRegistryEventListener.WmiRegistryEventListener == null) return;
 
+            startStopWmiRegistryEventListenersButton.Enabled = true;
+            removeAllWmiRegistryEventListenersButton.Enabled = true;
+
             registryWmiEventListenersRichTextBox.AppendText(
                 $"[{addWmiRegistryEventListener.WmiRegistryEventListener.RegistryPath.RegistryEvent}] {addWmiRegistryEventListener.WmiRegistryEventListener.RegistryPath.Hive}\\{addWmiRegistryEventListener.WmiRegistryEventListener.RegistryPath.RootPath}{(addWmiRegistryEventListener.WmiRegistryEventListener.RegistryPath.RegistryEvent == WmiRegistryEventListener.RegistryEvent.RegistryValueChangeEvent ? $" - {addWmiRegistryEventListener.WmiRegistryEventListener.RegistryPath.Value}" : string.Empty)}");
             registryWmiEventListenersRichTextBox.AppendText(Environment.NewLine);
@@ -125,6 +126,9 @@ namespace Registry_Monitor
          */
         private void removeAllWmiRegistryEventListenersButton_Click(object sender, EventArgs e)
         {
+            startStopWmiRegistryEventListenersButton.Enabled = false;
+            removeAllWmiRegistryEventListenersButton.Enabled = false;
+
             registryWmiEventListenersRichTextBox.Clear();
 
             foreach (var wmiRegistryEventListener in _wmiRegistryEventListeners) wmiRegistryEventListener.Dispose();

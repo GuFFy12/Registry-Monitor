@@ -55,6 +55,7 @@ namespace Registry_Monitor
             //
             // startStopWmiRegistryEventListenersButton
             //
+            this.startStopWmiRegistryEventListenersButton.Enabled = false;
             this.startStopWmiRegistryEventListenersButton.Location = new System.Drawing.Point(660, 58);
             this.startStopWmiRegistryEventListenersButton.Name = "startStopWmiRegistryEventListenersButton";
             this.startStopWmiRegistryEventListenersButton.Size = new System.Drawing.Size(120, 73);
@@ -103,6 +104,7 @@ namespace Registry_Monitor
             //
             // removeAllWmiRegistryEventListenersButton
             //
+            this.removeAllWmiRegistryEventListenersButton.Enabled = false;
             this.removeAllWmiRegistryEventListenersButton.Location = new System.Drawing.Point(554, 92);
             this.removeAllWmiRegistryEventListenersButton.Name = "removeAllWmiRegistryEventListenersButton";
             this.removeAllWmiRegistryEventListenersButton.Size = new System.Drawing.Size(100, 75);
