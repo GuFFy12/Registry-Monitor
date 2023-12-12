@@ -39,6 +39,8 @@ namespace Registry_Monitor
          */
         private void startStopWmiRegistryEventListenersButton_Click(object sender, EventArgs e)
         {
+            if (_wmiRegistryEventListeners.Count == 0) return;
+
             if (_wmiRegistryEventListenersStopped)
             {
                 startStopWmiRegistryEventListenersButton.Text = "Stop wmi registry event listeners";
