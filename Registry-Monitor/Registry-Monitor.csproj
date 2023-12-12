@@ -47,10 +47,10 @@
         <Reference Include="System.Xml"/>
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="AddRegistryPath.Designer.cs">
-            <DependentUpon>AddRegistryPathForm.cs</DependentUpon>
+        <Compile Include="AddWmiRegistryEventListener.Designer.cs">
+            <DependentUpon>AddWmiRegistryEventListenerForm.cs</DependentUpon>
         </Compile>
-        <Compile Include="AddRegistryPathForm.cs"/>
+        <Compile Include="AddWmiRegistryEventListenerForm.cs"/>
         <Compile Include="MainForm.cs">
             <SubType>Form</SubType>
         </Compile>
@@ -61,8 +61,8 @@
         <Compile Include="Properties\AssemblyInfo.cs"/>
         <Compile Include="RegistryUtils\RegistryPath.cs"/>
         <Compile Include="RegistryUtils\WmiRegistryEventListener.cs"/>
-        <EmbeddedResource Include="AddRegistryPathForm.resx">
-            <DependentUpon>AddRegistryPathForm.cs</DependentUpon>
+        <EmbeddedResource Include="AddWmiRegistryEventListenerForm.resx">
+            <DependentUpon>AddWmiRegistryEventListenerForm.cs</DependentUpon>
         </EmbeddedResource>
         <EmbeddedResource Include="MainForm.resx">
             <DependentUpon>MainForm.cs</DependentUpon>

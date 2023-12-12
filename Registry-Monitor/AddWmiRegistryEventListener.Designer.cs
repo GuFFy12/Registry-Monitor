@@ -5,7 +5,7 @@ using Registry_Monitor.RegistryUtils;
 
 namespace Registry_Monitor
 {
-    partial class AddRegistryPath
+    partial class AddWmiRegistryEventListener
     {
         /// <summary>
         /// Required designer variable.
@@ -40,7 +40,7 @@ namespace Registry_Monitor
             this.registryValueTextBox = new System.Windows.Forms.TextBox();
             this.registryPathLabel = new System.Windows.Forms.Label();
             this.registryValueLabel = new System.Windows.Forms.Label();
-            this.addRegistryPathButton = new System.Windows.Forms.Button();
+            this.addWmiRegistryEventListenerButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             //
             // registryEventComboBox
@@ -51,7 +51,7 @@ namespace Registry_Monitor
             this.registryEventComboBox.Name = "registryEventComboBox";
             this.registryEventComboBox.Size = new System.Drawing.Size(370, 21);
             this.registryEventComboBox.TabIndex = 0;
-            this.registryEventComboBox.SelectedIndexChanged += new System.EventHandler(this.trackTypeComboBox_SelectedIndexChanged);
+            this.registryEventComboBox.SelectedIndexChanged += new System.EventHandler(this.registryEventComboBox_SelectedIndexChanged);
             //
             // registryEventLabel
             //
@@ -92,23 +92,23 @@ namespace Registry_Monitor
             this.registryValueLabel.TabIndex = 5;
             this.registryValueLabel.Text = "Registry value:";
             //
-            // addRegistryPathButton
+            // addWmiRegistryEventListenerButton
             //
-            this.addRegistryPathButton.Location = new System.Drawing.Point(12, 159);
-            this.addRegistryPathButton.Name = "addRegistryPathButton";
-            this.addRegistryPathButton.Size = new System.Drawing.Size(370, 40);
-            this.addRegistryPathButton.TabIndex = 6;
-            this.addRegistryPathButton.Text = "Add registry path";
-            this.addRegistryPathButton.UseVisualStyleBackColor = true;
-            this.addRegistryPathButton.Click += new System.EventHandler(this.addRegistryPathButton_Click);
+            this.addWmiRegistryEventListenerButton.Location = new System.Drawing.Point(12, 159);
+            this.addWmiRegistryEventListenerButton.Name = "addWmiRegistryEventListenerButton";
+            this.addWmiRegistryEventListenerButton.Size = new System.Drawing.Size(370, 40);
+            this.addWmiRegistryEventListenerButton.TabIndex = 6;
+            this.addWmiRegistryEventListenerButton.Text = "Add wmi registry event listener";
+            this.addWmiRegistryEventListenerButton.UseVisualStyleBackColor = true;
+            this.addWmiRegistryEventListenerButton.Click += new System.EventHandler(this.addWmiRegistryEventListenerButton_Click);
             //
-            // AddRegistryPath
+            // AddWmiRegistryEventListener
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(394, 211);
-            this.Controls.Add(this.addRegistryPathButton);
+            this.Controls.Add(this.addWmiRegistryEventListenerButton);
             this.Controls.Add(this.registryValueLabel);
             this.Controls.Add(this.registryPathLabel);
             this.Controls.Add(this.registryValueTextBox);
@@ -119,8 +119,8 @@ namespace Registry_Monitor
             this.Location = new System.Drawing.Point(15, 15);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "AddRegistryPath";
-            this.Text = "Registry Monitror: Add registry path";
+            this.Name = "AddWmiRegistryEventListener";
+            this.Text = "Registry Monitror: Add Wmi Registry Event Listener";
             this.ResumeLayout(false);
             this.PerformLayout();
         }
@@ -131,7 +131,7 @@ namespace Registry_Monitor
         private System.Windows.Forms.TextBox registryValueTextBox;
         private System.Windows.Forms.Label registryPathLabel;
         private System.Windows.Forms.Label registryValueLabel;
-        private System.Windows.Forms.Button addRegistryPathButton;
+        private System.Windows.Forms.Button addWmiRegistryEventListenerButton;
 
         #endregion
     }

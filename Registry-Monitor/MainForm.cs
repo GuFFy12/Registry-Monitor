@@ -11,8 +11,8 @@ namespace Registry_Monitor
 {
     public partial class MainForm : Form
     {
-        private readonly List<RegistryPath> _registryPaths = new List<RegistryPath>();
         private readonly List<WmiRegistryEventListener> _wmiRegistryEventListeners = new List<WmiRegistryEventListener>();
+        private bool _wmiRegistryEventListenersStopped = true;
 
         public MainForm()
         {
@@ -37,27 +37,23 @@ namespace Registry_Monitor
         /**
          * This start / stop tracking changes.
          */
-        private void startStopTrackingButton_Click(object sender, EventArgs e)
+        private void startStopWmiRegistryEventListenersButton_Click(object sender, EventArgs e)
         {
-            if (_registryPaths.Count == 0) Log("Registry paths not specified", LogLevel.Warn);
-
-            if (_wmiRegistryEventListeners.Count == 0)
+            if (_wmiRegistryEventListenersStopped)
             {
-                startStopTrackingButton.Text = "Stop tracking changes";
-                addRegistryPathButton.Enabled = false;
-                removeAllRegistryPathsButton.Enabled = false;
+                startStopWmiRegistryEventListenersButton.Text = "Stop wmi registry event listeners";
+                addWmiRegistryEventListenerButton.Enabled = false;
+                removeAllWmiRegistryEventListenersButton.Enabled = false;
 
-                foreach (var registryPath in _registryPaths)
+                foreach (var wmiRegistryEventListener in _wmiRegistryEventListeners)
                     try
                     {
-                        var wmiRegistryEventListener = new WmiRegistryEventListener(registryPath);
-                        wmiRegistryEventListener.EventArrivedEventHandler += WmiRegistryWatcherEventArrived;
-                        _wmiRegistryEventListeners.Add(wmiRegistryEventListener);
+                        wmiRegistryEventListener.Start();
                     }
                     catch (Exception exception)
                     {
                         Log(
-                            $"$[{registryPath.RegistryEvent}] {registryPath.Hive}\\{registryPath.RootPath}{(registryPath.RegistryEvent == WmiRegistryEventListener.RegistryEvent.RegistryValueChangeEvent ? $" - {registryPath.Value}" : string.Empty)} - {exception.GetType().Name}: {exception.Message}",
+                            $"$[{wmiRegistryEventListener.RegistryPath.RegistryEvent}] {wmiRegistryEventListener.RegistryPath.Hive}\\{wmiRegistryEventListener.RegistryPath.RootPath}{(wmiRegistryEventListener.RegistryPath.RegistryEvent == WmiRegistryEventListener.RegistryEvent.RegistryValueChangeEvent ? $" - {wmiRegistryEventListener.RegistryPath.Value}" : string.Empty)} - {exception.GetType().Name}: {exception.Message}",
                             LogLevel.Error);
                     }
 
@@ -65,15 +61,16 @@ namespace Registry_Monitor
             }
             else
             {
-                startStopTrackingButton.Text = "Start tracking changes";
-                addRegistryPathButton.Enabled = true;
-                removeAllRegistryPathsButton.Enabled = true;
+                startStopWmiRegistryEventListenersButton.Text = "Start wmi registry event listeners";
+                addWmiRegistryEventListenerButton.Enabled = true;
+                removeAllWmiRegistryEventListenersButton.Enabled = true;
 
-                foreach (var wmiRegistryEventListener in _wmiRegistryEventListeners) wmiRegistryEventListener.Dispose();
-                _wmiRegistryEventListeners.Clear();
+                foreach (var wmiRegistryEventListener in _wmiRegistryEventListeners) wmiRegistryEventListener.Stop();
 
                 Log("Stop tracking changes");
             }
+
+            _wmiRegistryEventListenersStopped = !_wmiRegistryEventListenersStopped;
         }
 
         private void WmiRegistryWatcherEventArrived(object sender, EventArrivedEventArgs eventArrivedEventArgs)
@@ -96,34 +93,37 @@ namespace Registry_Monitor
         /**
          * Call addRegistryPath form.
          */
-        private void addRegistryButton_Click(object sender, EventArgs e)
+        private void addWmiRegistryEventListenerButton_Click(object sender, EventArgs e)
         {
-            var addRegistryPath = new AddRegistryPath();
-            addRegistryPath.FormClosed += AddRegistryPath_FormClosed;
-            addRegistryPath.ShowDialog();
+            var addWmiRegistryEventListener = new AddWmiRegistryEventListener();
+            addWmiRegistryEventListener.FormClosed += AddWmiRegistryEventListener_FormClosed;
+            addWmiRegistryEventListener.ShowDialog();
         }
 
         /**
          * On addRegistryPath form close, add registry paths params to registryPaths.
          */
-        private void AddRegistryPath_FormClosed(object sender, FormClosedEventArgs e)
+        private void AddWmiRegistryEventListener_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (!(sender is AddRegistryPath addRegistryPath) || addRegistryPath.RegistryPath == null) return;
+            if (!(sender is AddWmiRegistryEventListener addWmiRegistryEventListener) || addWmiRegistryEventListener.WmiRegistryEventListener == null) return;
 
-            registryPathsRichTextBox.AppendText(
-                $"[{addRegistryPath.RegistryPath.RegistryEvent}] {addRegistryPath.RegistryPath.Hive}\\{addRegistryPath.RegistryPath.RootPath}{(addRegistryPath.RegistryPath.RegistryEvent == WmiRegistryEventListener.RegistryEvent.RegistryValueChangeEvent ? $" - {addRegistryPath.RegistryPath.Value}" : string.Empty)}");
-            registryPathsRichTextBox.AppendText(Environment.NewLine);
+            registryWmiEventListenersRichTextBox.AppendText(
+                $"[{addWmiRegistryEventListener.WmiRegistryEventListener.RegistryPath.RegistryEvent}] {addWmiRegistryEventListener.WmiRegistryEventListener.RegistryPath.Hive}\\{addWmiRegistryEventListener.WmiRegistryEventListener.RegistryPath.RootPath}{(addWmiRegistryEventListener.WmiRegistryEventListener.RegistryPath.RegistryEvent == WmiRegistryEventListener.RegistryEvent.RegistryValueChangeEvent ? $" - {addWmiRegistryEventListener.WmiRegistryEventListener.RegistryPath.Value}" : string.Empty)}");
+            registryWmiEventListenersRichTextBox.AppendText(Environment.NewLine);
 
-            _registryPaths.Add(addRegistryPath.RegistryPath);
+            addWmiRegistryEventListener.WmiRegistryEventListener.EventArrivedEventHandler += WmiRegistryWatcherEventArrived;
+            _wmiRegistryEventListeners.Add(addWmiRegistryEventListener.WmiRegistryEventListener);
         }
 
         /**
          * Remove registry paths.
          */
-        private void removeAllRegistryPathsButton_Click(object sender, EventArgs e)
+        private void removeAllWmiRegistryEventListenersButton_Click(object sender, EventArgs e)
         {
-            registryPathsRichTextBox.Clear();
-            _registryPaths.Clear();
+            registryWmiEventListenersRichTextBox.Clear();
+
+            foreach (var wmiRegistryEventListener in _wmiRegistryEventListeners) wmiRegistryEventListener.Dispose();
+            _wmiRegistryEventListeners.Clear();
         }
 
         /**

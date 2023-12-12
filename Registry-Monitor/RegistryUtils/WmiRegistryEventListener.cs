@@ -12,7 +12,7 @@ namespace Registry_Monitor.RegistryUtils
             RegistryValueChangeEvent
         }
 
-        private readonly ManagementEventWatcher _watcher;
+        private readonly ManagementEventWatcher _managementEventWatcher;
 
         public readonly RegistryPath RegistryPath;
 
@@ -49,14 +49,23 @@ namespace Registry_Monitor.RegistryUtils
                         $"The registry track type '{RegistryPath.RegistryEvent}' is not handled");
             }
 
-            _watcher = new ManagementEventWatcher(wqlEventQuery);
-            _watcher.EventArrived += EventArrived;
-            _watcher.Start();
+            _managementEventWatcher = new ManagementEventWatcher(wqlEventQuery);
+            _managementEventWatcher.EventArrived += EventArrived;
         }
 
         public void Dispose()
         {
-            _watcher?.Dispose();
+            _managementEventWatcher?.Dispose();
+        }
+
+        public void Start()
+        {
+            _managementEventWatcher.Start();
+        }
+
+        public void Stop()
+        {
+            _managementEventWatcher.Stop();
         }
 
         public event EventArrivedEventHandler EventArrivedEventHandler;
