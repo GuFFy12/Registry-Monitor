@@ -17,11 +17,17 @@ namespace Registry_Monitor
             registryEventComboBox.Text = WmiRegistryEventListener.RegistryEvent.RegistryKeyChangeEvent.ToString();
         }
 
+        /**
+         * Disable value text box, if registry event is not RegistryValueChangeEvent.
+         */
         private void registryEventComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             registryValueTextBox.ReadOnly = registryEventComboBox.Text != WmiRegistryEventListener.RegistryEvent.RegistryValueChangeEvent.ToString();
         }
 
+        /**
+         * Try to parse registry path, and if all ok, add it.
+         */
         private void addWmiRegistryEventListenerButton_Click(object sender, EventArgs e)
         {
             try

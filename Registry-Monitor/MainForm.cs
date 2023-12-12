@@ -73,6 +73,9 @@ namespace Registry_Monitor
             _wmiRegistryEventListenersStopped = !_wmiRegistryEventListenersStopped;
         }
 
+        /**
+         * This method is event triggered from wmiRegistryEventListener.
+         */
         private void WmiRegistryWatcherEventArrived(object sender, EventArrivedEventArgs eventArrivedEventArgs)
         {
             if (!(sender is WmiRegistryEventListener wmiRegistryEventListener)) return;
@@ -136,10 +139,6 @@ namespace Registry_Monitor
             if (saveLogCheckBox.Checked) File.WriteAllText($"{DateTime.Now:yyyy-MM-ddTHH-mm-ss.fffffff}.log", logRichTextBox.Text);
         }
 
-        /**
-         * Simple logger that writes it to logRichTextBox. Print time, message type.
-         */
-
         #region Log
 
         public enum LogLevel
@@ -151,6 +150,9 @@ namespace Registry_Monitor
             Fatal
         }
 
+        /**
+         * Simple logger that writes it to logRichTextBox. Print time, message type.
+         */
         private void Log(string message, LogLevel logLevel = LogLevel.Info)
         {
             // Use invoke, because we can call Logger from another classes.
