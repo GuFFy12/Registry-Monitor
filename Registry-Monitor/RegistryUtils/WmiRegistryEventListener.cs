@@ -15,7 +15,7 @@ namespace Registry_Monitor.RegistryUtils
         private readonly ManagementEventWatcher _watcher;
 
         public readonly RegistryPath RegistryPath;
-        public EventArrivedEventHandler EventArrivedEventHandler;
+        private readonly EventArrivedEventHandler _eventArrivedEventHandler;
 
         /**
          * Query registry using WMI.
@@ -24,7 +24,7 @@ namespace Registry_Monitor.RegistryUtils
         public WmiRegistryEventListener(RegistryPath registryPath, EventArrivedEventHandler eventArrivedEventHandler)
         {
             RegistryPath = registryPath;
-            EventArrivedEventHandler = eventArrivedEventHandler;
+            _eventArrivedEventHandler = eventArrivedEventHandler;
 
             /*
              * Registry query.
@@ -62,7 +62,7 @@ namespace Registry_Monitor.RegistryUtils
 
         private void EventArrived(object sender, EventArrivedEventArgs eventArrivedEventArgs)
         {
-            EventArrivedEventHandler?.Invoke(this, eventArrivedEventArgs);
+            _eventArrivedEventHandler?.Invoke(this, eventArrivedEventArgs);
         }
     }
 }
