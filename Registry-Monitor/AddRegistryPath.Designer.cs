@@ -34,8 +34,8 @@ namespace Registry_Monitor
         /// </summary>
         private void InitializeComponent()
         {
-            this.trackTypeComboBox = new System.Windows.Forms.ComboBox();
-            this.trackTypeLabel = new System.Windows.Forms.Label();
+            this.registryEventComboBox = new System.Windows.Forms.ComboBox();
+            this.registryEventLabel = new System.Windows.Forms.Label();
             this.registryPathTextBox = new System.Windows.Forms.TextBox();
             this.registryValueTextBox = new System.Windows.Forms.TextBox();
             this.registryPathLabel = new System.Windows.Forms.Label();
@@ -43,23 +43,23 @@ namespace Registry_Monitor
             this.addRegistryPathButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             //
-            // trackTypeComboBox
+            // registryEventComboBox
             //
-            this.trackTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.trackTypeComboBox.FormattingEnabled = true;
-            this.trackTypeComboBox.Location = new System.Drawing.Point(12, 32);
-            this.trackTypeComboBox.Name = "trackTypeComboBox";
-            this.trackTypeComboBox.Size = new System.Drawing.Size(370, 21);
-            this.trackTypeComboBox.TabIndex = 0;
-            this.trackTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.trackTypeComboBox_SelectedIndexChanged);
+            this.registryEventComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.registryEventComboBox.FormattingEnabled = true;
+            this.registryEventComboBox.Location = new System.Drawing.Point(12, 32);
+            this.registryEventComboBox.Name = "registryEventComboBox";
+            this.registryEventComboBox.Size = new System.Drawing.Size(370, 21);
+            this.registryEventComboBox.TabIndex = 0;
+            this.registryEventComboBox.SelectedIndexChanged += new System.EventHandler(this.trackTypeComboBox_SelectedIndexChanged);
             //
-            // trackTypeLabel
+            // registryEventLabel
             //
-            this.trackTypeLabel.Location = new System.Drawing.Point(12, 9);
-            this.trackTypeLabel.Name = "trackTypeLabel";
-            this.trackTypeLabel.Size = new System.Drawing.Size(370, 20);
-            this.trackTypeLabel.TabIndex = 1;
-            this.trackTypeLabel.Text = "Track type:";
+            this.registryEventLabel.Location = new System.Drawing.Point(12, 9);
+            this.registryEventLabel.Name = "registryEventLabel";
+            this.registryEventLabel.Size = new System.Drawing.Size(370, 20);
+            this.registryEventLabel.TabIndex = 1;
+            this.registryEventLabel.Text = "Registry event:";
             //
             // registryPathTextBox
             //
@@ -113,8 +113,8 @@ namespace Registry_Monitor
             this.Controls.Add(this.registryPathLabel);
             this.Controls.Add(this.registryValueTextBox);
             this.Controls.Add(this.registryPathTextBox);
-            this.Controls.Add(this.trackTypeLabel);
-            this.Controls.Add(this.trackTypeComboBox);
+            this.Controls.Add(this.registryEventLabel);
+            this.Controls.Add(this.registryEventComboBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Location = new System.Drawing.Point(15, 15);
             this.MaximizeBox = false;
@@ -125,8 +125,8 @@ namespace Registry_Monitor
             this.PerformLayout();
         }
 
-        private System.Windows.Forms.ComboBox trackTypeComboBox;
-        private System.Windows.Forms.Label trackTypeLabel;
+        private System.Windows.Forms.ComboBox registryEventComboBox;
+        private System.Windows.Forms.Label registryEventLabel;
         private System.Windows.Forms.TextBox registryPathTextBox;
         private System.Windows.Forms.TextBox registryValueTextBox;
         private System.Windows.Forms.Label registryPathLabel;

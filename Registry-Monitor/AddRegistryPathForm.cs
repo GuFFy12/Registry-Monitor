@@ -13,24 +13,24 @@ namespace Registry_Monitor
         {
             InitializeComponent();
 
-            trackTypeComboBox.Items.AddRange(Enum.GetValues(typeof(WmiRegistryEventListener.TrackTypes)).Cast<object>().ToArray());
-            trackTypeComboBox.Text = WmiRegistryEventListener.TrackTypes.RegistryKeyChangeEvent.ToString();
+            registryEventComboBox.Items.AddRange(Enum.GetValues(typeof(WmiRegistryEventListener.RegistryEvent)).Cast<object>().ToArray());
+            registryEventComboBox.Text = WmiRegistryEventListener.RegistryEvent.RegistryKeyChangeEvent.ToString();
         }
 
         private void trackTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            registryValueTextBox.ReadOnly = trackTypeComboBox.Text != WmiRegistryEventListener.TrackTypes.RegistryValueChangeEvent.ToString();
+            registryValueTextBox.ReadOnly = registryEventComboBox.Text != WmiRegistryEventListener.RegistryEvent.RegistryValueChangeEvent.ToString();
         }
 
         private void addRegistryPathButton_Click(object sender, EventArgs e)
         {
             try
             {
-                RegistryPath = new RegistryPath((WmiRegistryEventListener.TrackTypes)trackTypeComboBox.SelectedIndex, registryPathTextBox.Text, registryValueTextBox.Text);
+                RegistryPath = new RegistryPath((WmiRegistryEventListener.RegistryEvent)registryEventComboBox.SelectedIndex, registryPathTextBox.Text, registryValueTextBox.Text);
             }
             catch (Exception exception)
             {
-                MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(exception.Message, exception.GetType().Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 RegistryPath = null;
                 return;
             }

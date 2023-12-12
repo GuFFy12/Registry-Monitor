@@ -30,7 +30,7 @@ namespace Registry_Monitor
             }
             catch (Exception exception)
             {
-                Logger(exception.Message, LoggerMessageType.Error);
+                Log($"{exception.GetType().Name}: {exception.Message}", LogLevel.Warn);
             }
         }
 
@@ -39,6 +39,8 @@ namespace Registry_Monitor
          */
         private void startStopTrackingButton_Click(object sender, EventArgs e)
         {
+            if (_registryPaths.Count == 0) Log("Registry paths not specified", LogLevel.Warn);
+
             if (_wmiRegistryEventListeners.Count == 0)
             {
                 startStopTrackingButton.Text = "Stop tracking changes";
@@ -48,16 +50,18 @@ namespace Registry_Monitor
                 foreach (var registryPath in _registryPaths)
                     try
                     {
-                        _wmiRegistryEventListeners.Add(new WmiRegistryEventListener(registryPath, WmiRegistryWatcherEventArrived));
+                        var wmiRegistryEventListener = new WmiRegistryEventListener(registryPath);
+                        wmiRegistryEventListener.EventArrivedEventHandler += WmiRegistryWatcherEventArrived;
+                        _wmiRegistryEventListeners.Add(wmiRegistryEventListener);
                     }
                     catch (Exception exception)
                     {
-                        Logger(
-                            $"[{registryPath.TrackType}] {registryPath.Hive}\\{registryPath.RootPath}{(registryPath.TrackType == WmiRegistryEventListener.TrackTypes.RegistryValueChangeEvent ? $" - {registryPath.Value}" : string.Empty)} - {exception.Message}",
-                            LoggerMessageType.Error);
+                        Log(
+                            $"$[{registryPath.RegistryEvent}] {registryPath.Hive}\\{registryPath.RootPath}{(registryPath.RegistryEvent == WmiRegistryEventListener.RegistryEvent.RegistryValueChangeEvent ? $" - {registryPath.Value}" : string.Empty)} - {exception.GetType().Name}: {exception.Message}",
+                            LogLevel.Error);
                     }
 
-                Logger("Start tracking changes...");
+                Log("Start tracking changes...");
             }
             else
             {
@@ -68,7 +72,7 @@ namespace Registry_Monitor
                 foreach (var wmiRegistryEventListener in _wmiRegistryEventListeners) wmiRegistryEventListener.Dispose();
                 _wmiRegistryEventListeners.Clear();
 
-                Logger("Stop tracking changes");
+                Log("Stop tracking changes");
             }
         }
 
@@ -77,16 +81,16 @@ namespace Registry_Monitor
             if (!(sender is WmiRegistryEventListener wmiRegistryEventListener)) return;
 
             var loggerMessage =
-                $"[{wmiRegistryEventListener.RegistryPath.TrackType}] {wmiRegistryEventListener.RegistryPath.Hive}\\{wmiRegistryEventListener.RegistryPath.RootPath}";
+                $"[{wmiRegistryEventListener.RegistryPath.RegistryEvent}] {wmiRegistryEventListener.RegistryPath.Hive}\\{wmiRegistryEventListener.RegistryPath.RootPath}";
 
             foreach (var prop in eventArrivedEventArgs.NewEvent.Properties) loggerMessage += $" [{prop.Name}:{prop.Value}]";
 
-            if (wmiRegistryEventListener.RegistryPath.TrackType != WmiRegistryEventListener.TrackTypes.RegistryTreeChangeEvent)
-                loggerMessage += $@"[ValueData:{(wmiRegistryEventListener.RegistryPath.TrackType == WmiRegistryEventListener.TrackTypes.RegistryKeyChangeEvent
+            if (wmiRegistryEventListener.RegistryPath.RegistryEvent != WmiRegistryEventListener.RegistryEvent.RegistryTreeChangeEvent)
+                loggerMessage += $@"[ValueData:{(wmiRegistryEventListener.RegistryPath.RegistryEvent == WmiRegistryEventListener.RegistryEvent.RegistryKeyChangeEvent
                     ? Registry.GetValue($"{wmiRegistryEventListener.RegistryPath.Hive}\\{wmiRegistryEventListener.RegistryPath.RootPath}", "", "").ToString()
                     : Registry.GetValue($"{wmiRegistryEventListener.RegistryPath.Hive}\\{wmiRegistryEventListener.RegistryPath.RootPath}", wmiRegistryEventListener.RegistryPath.Value, "").ToString())}]";
 
-            Logger(loggerMessage);
+            Log(loggerMessage);
         }
 
         /**
@@ -107,7 +111,7 @@ namespace Registry_Monitor
             if (!(sender is AddRegistryPath addRegistryPath) || addRegistryPath.RegistryPath == null) return;
 
             registryPathsRichTextBox.AppendText(
-                $"[{addRegistryPath.RegistryPath.TrackType}] {addRegistryPath.RegistryPath.Hive}\\{addRegistryPath.RegistryPath.RootPath}{(addRegistryPath.RegistryPath.TrackType == WmiRegistryEventListener.TrackTypes.RegistryValueChangeEvent ? $" - {addRegistryPath.RegistryPath.Value}" : string.Empty)}");
+                $"[{addRegistryPath.RegistryPath.RegistryEvent}] {addRegistryPath.RegistryPath.Hive}\\{addRegistryPath.RegistryPath.RootPath}{(addRegistryPath.RegistryPath.RegistryEvent == WmiRegistryEventListener.RegistryEvent.RegistryValueChangeEvent ? $" - {addRegistryPath.RegistryPath.Value}" : string.Empty)}");
             registryPathsRichTextBox.AppendText(Environment.NewLine);
 
             _registryPaths.Add(addRegistryPath.RegistryPath);
@@ -136,9 +140,9 @@ namespace Registry_Monitor
          * Simple logger that writes it to logRichTextBox. Print time, message type.
          */
 
-        #region Logger
+        #region Log
 
-        public enum LoggerMessageType
+        public enum LogLevel
         {
             Debug,
             Info,
@@ -147,10 +151,10 @@ namespace Registry_Monitor
             Fatal
         }
 
-        private void Logger(string message, LoggerMessageType loggerMessageType = LoggerMessageType.Info)
+        private void Log(string message, LogLevel logLevel = LogLevel.Info)
         {
             // Use invoke, because we can call Logger from another classes.
-            logRichTextBox.Invoke(new Action(() => logRichTextBox.AppendText($"[{loggerMessageType.ToString().ToUpper()}] {DateTime.Now:HH:mm:ss.fff} - {message}\n")));
+            logRichTextBox.Invoke(new Action(() => logRichTextBox.AppendText($"[{logLevel.ToString().ToUpper()}] {DateTime.Now:HH:mm:ss.fff} - {message}\n")));
         }
 
         #endregion
