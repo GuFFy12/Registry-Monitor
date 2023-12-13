@@ -117,4 +117,186 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
+    <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"/>
+    <data name="registryEventTypeComboBox.Location" type="System.Drawing.Point, System.Drawing">
+        <value>12, 32</value>
+    </data>
+    <data name="registryEventTypeComboBox.Size" type="System.Drawing.Size, System.Drawing">
+        <value>370, 21</value>
+    </data>
+    <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+    <data name="registryEventTypeComboBox.TabIndex" type="System.Int32, mscorlib">
+        <value>0</value>
+    </data>
+    <data name="&gt;&gt;registryEventTypeComboBox.Name" xml:space="preserve">
+    <value>registryEventTypeComboBox</value>
+  </data>
+    <data name="&gt;&gt;registryEventTypeComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+    <data name="&gt;&gt;registryEventTypeComboBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+    <data name="&gt;&gt;registryEventTypeComboBox.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+    <data name="registryEventTypeLabel.Location" type="System.Drawing.Point, System.Drawing">
+        <value>12, 9</value>
+    </data>
+    <data name="registryEventTypeLabel.Size" type="System.Drawing.Size, System.Drawing">
+        <value>370, 20</value>
+    </data>
+    <data name="registryEventTypeLabel.TabIndex" type="System.Int32, mscorlib">
+        <value>1</value>
+    </data>
+    <data name="registryEventTypeLabel.Text" xml:space="preserve">
+    <value>Registry event type:</value>
+  </data>
+    <data name="&gt;&gt;registryEventTypeLabel.Name" xml:space="preserve">
+    <value>registryEventTypeLabel</value>
+  </data>
+    <data name="&gt;&gt;registryEventTypeLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+    <data name="&gt;&gt;registryEventTypeLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+    <data name="&gt;&gt;registryEventTypeLabel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+    <data name="registryPathTextBox.Location" type="System.Drawing.Point, System.Drawing">
+        <value>12, 79</value>
+    </data>
+    <data name="registryPathTextBox.Size" type="System.Drawing.Size, System.Drawing">
+        <value>370, 20</value>
+    </data>
+    <data name="registryPathTextBox.TabIndex" type="System.Int32, mscorlib">
+        <value>2</value>
+    </data>
+    <data name="&gt;&gt;registryPathTextBox.Name" xml:space="preserve">
+    <value>registryPathTextBox</value>
+  </data>
+    <data name="&gt;&gt;registryPathTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+    <data name="&gt;&gt;registryPathTextBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+    <data name="&gt;&gt;registryPathTextBox.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+    <data name="registryValueTextBox.Location" type="System.Drawing.Point, System.Drawing">
+        <value>12, 125</value>
+    </data>
+    <data name="registryValueTextBox.Size" type="System.Drawing.Size, System.Drawing">
+        <value>370, 20</value>
+    </data>
+    <data name="registryValueTextBox.TabIndex" type="System.Int32, mscorlib">
+        <value>3</value>
+    </data>
+    <data name="&gt;&gt;registryValueTextBox.Name" xml:space="preserve">
+    <value>registryValueTextBox</value>
+  </data>
+    <data name="&gt;&gt;registryValueTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+    <data name="&gt;&gt;registryValueTextBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+    <data name="&gt;&gt;registryValueTextBox.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+    <data name="registryPathLabel.Location" type="System.Drawing.Point, System.Drawing">
+        <value>12, 56</value>
+    </data>
+    <data name="registryPathLabel.Size" type="System.Drawing.Size, System.Drawing">
+        <value>370, 20</value>
+    </data>
+    <data name="registryPathLabel.TabIndex" type="System.Int32, mscorlib">
+        <value>4</value>
+    </data>
+    <data name="registryPathLabel.Text" xml:space="preserve">
+    <value>Registry path:</value>
+  </data>
+    <data name="&gt;&gt;registryPathLabel.Name" xml:space="preserve">
+    <value>registryPathLabel</value>
+  </data>
+    <data name="&gt;&gt;registryPathLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+    <data name="&gt;&gt;registryPathLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+    <data name="&gt;&gt;registryPathLabel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+    <data name="registryValueLabel.Location" type="System.Drawing.Point, System.Drawing">
+        <value>12, 102</value>
+    </data>
+    <data name="registryValueLabel.Size" type="System.Drawing.Size, System.Drawing">
+        <value>370, 20</value>
+    </data>
+    <data name="registryValueLabel.TabIndex" type="System.Int32, mscorlib">
+        <value>5</value>
+    </data>
+    <data name="registryValueLabel.Text" xml:space="preserve">
+    <value>Registry value:</value>
+  </data>
+    <data name="&gt;&gt;registryValueLabel.Name" xml:space="preserve">
+    <value>registryValueLabel</value>
+  </data>
+    <data name="&gt;&gt;registryValueLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+    <data name="&gt;&gt;registryValueLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+    <data name="&gt;&gt;registryValueLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+    <data name="addWmiRegistryEventListenerButton.Location" type="System.Drawing.Point, System.Drawing">
+        <value>12, 159</value>
+    </data>
+    <data name="addWmiRegistryEventListenerButton.Size" type="System.Drawing.Size, System.Drawing">
+        <value>370, 40</value>
+    </data>
+    <data name="addWmiRegistryEventListenerButton.TabIndex" type="System.Int32, mscorlib">
+        <value>6</value>
+    </data>
+    <data name="addWmiRegistryEventListenerButton.Text" xml:space="preserve">
+    <value>Add wmi registry event listener</value>
+  </data>
+    <data name="&gt;&gt;addWmiRegistryEventListenerButton.Name" xml:space="preserve">
+    <value>addWmiRegistryEventListenerButton</value>
+  </data>
+    <data name="&gt;&gt;addWmiRegistryEventListenerButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+    <data name="&gt;&gt;addWmiRegistryEventListenerButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+    <data name="&gt;&gt;addWmiRegistryEventListenerButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+    <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+        <value>True</value>
+    </metadata>
+    <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+        <value>6, 13</value>
+    </data>
+    <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+        <value>394, 211</value>
+    </data>
+    <data name="$this.Location" type="System.Drawing.Point, System.Drawing">
+        <value>15, 15</value>
+    </data>
+    <data name="$this.Text" xml:space="preserve">
+    <value>Registry Monitror: Add Wmi Registry Event Listener</value>
+  </data>
+    <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>AddWmiRegistryEventListener</value>
+  </data>
+    <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Registry_Monitor.Properties {
+namespace Registry_Monitor {
     using System;
     
     
@@ -21,14 +21,14 @@ namespace Registry_Monitor.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    internal class Log {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
+        internal Log() {
         }
         
         /// <summary>
@@ -38,7 +38,7 @@ namespace Registry_Monitor.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Registry_Monitor.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Registry_Monitor.Log", typeof(Log).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -60,11 +60,21 @@ namespace Registry_Monitor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Exit without saving log file?.
+        ///   Looks up a localized string similar to Start tracking changes....
         /// </summary>
-        internal static string MainForm_OnFormClosing_Exit_without_saving_log_file_ {
+        internal static string MainForm_startStopWmiRegistryEventListenersButton_Click_Start_tracking_changes___ {
             get {
-                return ResourceManager.GetString("MainForm_OnFormClosing_Exit_without_saving_log_file_", resourceCulture);
+                return ResourceManager.GetString("MainForm_startStopWmiRegistryEventListenersButton_Click_Start_tracking_changes___" +
+                        "", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stop tracking changes.
+        /// </summary>
+        internal static string MainForm_startStopWmiRegistryEventListenersButton_Click_Stop_tracking_changes {
+            get {
+                return ResourceManager.GetString("MainForm_startStopWmiRegistryEventListenersButton_Click_Stop_tracking_changes", resourceCulture);
             }
         }
     }

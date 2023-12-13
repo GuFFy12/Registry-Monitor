@@ -5,6 +5,7 @@ using System.IO;
 using System.Management;
 using System.Windows.Forms;
 using Microsoft.Win32;
+using Registry_Monitor.Properties;
 using Registry_Monitor.RegistryUtils;
 
 namespace Registry_Monitor
@@ -48,7 +49,6 @@ namespace Registry_Monitor
             // Toggle the state of WmiRegistryEventListeners and update UI accordingly
             if (_wmiRegistryEventListenersStopped)
             {
-                startStopWmiRegistryEventListenersButton.Text = "Stop wmi registry event listeners";
                 addWmiRegistryEventListenerButton.Enabled = false;
                 removeAllWmiRegistryEventListenersButton.Enabled = false;
 
@@ -66,18 +66,17 @@ namespace Registry_Monitor
                         );
                     }
 
-                Log("Start tracking changes...");
+                Log(Registry_Monitor.Log.MainForm_startStopWmiRegistryEventListenersButton_Click_Start_tracking_changes___);
             }
             else
             {
-                startStopWmiRegistryEventListenersButton.Text = "Start wmi registry event listeners";
                 addWmiRegistryEventListenerButton.Enabled = true;
                 removeAllWmiRegistryEventListenersButton.Enabled = true;
 
                 // Stop each WmiRegistryEventListener
                 foreach (var wmiRegistryEventListener in _wmiRegistryEventListeners) wmiRegistryEventListener.Stop();
 
-                Log("Stop tracking changes");
+                Log(Registry_Monitor.Log.MainForm_startStopWmiRegistryEventListenersButton_Click_Stop_tracking_changes);
             }
 
             _wmiRegistryEventListenersStopped = !_wmiRegistryEventListenersStopped;
@@ -161,10 +160,24 @@ namespace Registry_Monitor
          */
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            base.OnFormClosing(e);
+            // Don't save the log to a file if the corresponding checkbox is not checked
+            if (!saveLogCheckBox.Checked) base.OnFormClosing(e);
 
-            // Save the log to a file if the corresponding checkbox is checked
-            if (saveLogCheckBox.Checked) File.WriteAllText($"{DateTime.Now:yyyy-MM-ddTHH-mm-ss.fffffff}.log", logRichTextBox.Text);
+            try
+            {
+                // Attempt to write to the file
+                File.WriteAllText($"{DateTime.Now:yyyy-MM-ddTHH-mm-ss.fffffff}.log", logRichTextBox.Text);
+            }
+            catch (Exception exception)
+            {
+                if (MessageBox.Show(Resources.MainForm_OnFormClosing_Exit_without_saving_log_file_, exception.Message, MessageBoxButtons.YesNo, MessageBoxIcon.Question) !=
+                    DialogResult.Yes) e.Cancel = true;
+
+                // Log any exceptions that occur during the attempt to write to the file
+                Log($"{exception.GetType().Name}: {exception.Message}", LogLevel.Warn);
+
+                base.OnFormClosing(e);
+            }
         }
 
         #region Log

@@ -50,7 +50,7 @@ namespace Registry_Monitor.RegistryUtils
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(RegistryEvent), RegistryPath.RegistryEvent,
-                        $"The registry track type '{RegistryPath.RegistryEvent}' is not handled");
+                        string.Format(RegistryUtils.WmiRegistryEventListener_WmiRegistryEventListener_The_registry_event_type___0___is_not_handled, RegistryPath.RegistryEvent));
             }
 
             // Create a new ManagementEventWatcher using the defined WQL query

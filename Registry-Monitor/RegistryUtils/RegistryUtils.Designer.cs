@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Registry_Monitor.Properties {
+namespace Registry_Monitor.RegistryUtils {
     using System;
     
     
@@ -21,14 +21,14 @@ namespace Registry_Monitor.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    internal class RegistryUtils {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
+        internal RegistryUtils() {
         }
         
         /// <summary>
@@ -38,7 +38,7 @@ namespace Registry_Monitor.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Registry_Monitor.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Registry_Monitor.RegistryUtils.RegistryUtils", typeof(RegistryUtils).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -60,11 +60,39 @@ namespace Registry_Monitor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Exit without saving log file?.
+        ///   Looks up a localized string similar to {0} is not a valid registry hive.
         /// </summary>
-        internal static string MainForm_OnFormClosing_Exit_without_saving_log_file_ {
+        internal static string RegistryPath_RegistryPath__0__is_not_a_valid_registry_hive {
             get {
-                return ResourceManager.GetString("MainForm_OnFormClosing_Exit_without_saving_log_file_", resourceCulture);
+                return ResourceManager.GetString("RegistryPath_RegistryPath__0__is_not_a_valid_registry_hive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registry hive not found.
+        /// </summary>
+        internal static string RegistryPath_RegistryPath_Registry_hive_not_found {
+            get {
+                return ResourceManager.GetString("RegistryPath_RegistryPath_Registry_hive_not_found", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The registry hive &apos;{0}&apos; is not handled.
+        /// </summary>
+        internal static string RegistryPath_RegistryPath_The_registry_hive___0___is_not_handled {
+            get {
+                return ResourceManager.GetString("RegistryPath_RegistryPath_The_registry_hive___0___is_not_handled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The registry event type &apos;{0}&apos; is not handled.
+        /// </summary>
+        internal static string WmiRegistryEventListener_WmiRegistryEventListener_The_registry_event_type___0___is_not_handled {
+            get {
+                return ResourceManager.GetString("WmiRegistryEventListener_WmiRegistryEventListener_The_registry_event_type___0___i" +
+                        "s_not_handled", resourceCulture);
             }
         }
     }

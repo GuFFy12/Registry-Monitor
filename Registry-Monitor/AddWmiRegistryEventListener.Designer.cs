@@ -34,99 +34,79 @@ namespace Registry_Monitor
         /// </summary>
         private void InitializeComponent()
         {
-            this.registryEventComboBox = new System.Windows.Forms.ComboBox();
-            this.registryEventLabel = new System.Windows.Forms.Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddWmiRegistryEventListener));
+            this.registryEventTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.registryEventTypeLabel = new System.Windows.Forms.Label();
             this.registryPathTextBox = new System.Windows.Forms.TextBox();
             this.registryValueTextBox = new System.Windows.Forms.TextBox();
             this.registryPathLabel = new System.Windows.Forms.Label();
             this.registryValueLabel = new System.Windows.Forms.Label();
             this.addWmiRegistryEventListenerButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            //
-            // registryEventComboBox
-            //
-            this.registryEventComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.registryEventComboBox.FormattingEnabled = true;
-            this.registryEventComboBox.Location = new System.Drawing.Point(12, 32);
-            this.registryEventComboBox.Name = "registryEventComboBox";
-            this.registryEventComboBox.Size = new System.Drawing.Size(370, 21);
-            this.registryEventComboBox.TabIndex = 0;
-            this.registryEventComboBox.SelectedIndexChanged += new System.EventHandler(this.registryEventComboBox_SelectedIndexChanged);
-            //
-            // registryEventLabel
-            //
-            this.registryEventLabel.Location = new System.Drawing.Point(12, 9);
-            this.registryEventLabel.Name = "registryEventLabel";
-            this.registryEventLabel.Size = new System.Drawing.Size(370, 20);
-            this.registryEventLabel.TabIndex = 1;
-            this.registryEventLabel.Text = "Registry event:";
-            //
+            // 
+            // registryEventTypeComboBox
+            // 
+            this.registryEventTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.registryEventTypeComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.registryEventTypeComboBox, "registryEventTypeComboBox");
+            this.registryEventTypeComboBox.Name = "registryEventTypeComboBox";
+            this.registryEventTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.registryEventTypeComboBox_SelectedIndexChanged);
+            // 
+            // registryEventTypeLabel
+            // 
+            resources.ApplyResources(this.registryEventTypeLabel, "registryEventTypeLabel");
+            this.registryEventTypeLabel.Name = "registryEventTypeLabel";
+            // 
             // registryPathTextBox
-            //
-            this.registryPathTextBox.Location = new System.Drawing.Point(12, 79);
+            // 
+            resources.ApplyResources(this.registryPathTextBox, "registryPathTextBox");
             this.registryPathTextBox.Name = "registryPathTextBox";
-            this.registryPathTextBox.Size = new System.Drawing.Size(370, 20);
-            this.registryPathTextBox.TabIndex = 2;
-            //
+            // 
             // registryValueTextBox
-            //
-            this.registryValueTextBox.Location = new System.Drawing.Point(12, 125);
+            // 
+            resources.ApplyResources(this.registryValueTextBox, "registryValueTextBox");
             this.registryValueTextBox.Name = "registryValueTextBox";
             this.registryValueTextBox.ReadOnly = true;
-            this.registryValueTextBox.Size = new System.Drawing.Size(370, 20);
-            this.registryValueTextBox.TabIndex = 3;
-            //
+            // 
             // registryPathLabel
-            //
-            this.registryPathLabel.Location = new System.Drawing.Point(12, 56);
+            // 
+            resources.ApplyResources(this.registryPathLabel, "registryPathLabel");
             this.registryPathLabel.Name = "registryPathLabel";
-            this.registryPathLabel.Size = new System.Drawing.Size(370, 20);
-            this.registryPathLabel.TabIndex = 4;
-            this.registryPathLabel.Text = "Registry path:";
-            //
+            // 
             // registryValueLabel
-            //
-            this.registryValueLabel.Location = new System.Drawing.Point(12, 102);
+            // 
+            resources.ApplyResources(this.registryValueLabel, "registryValueLabel");
             this.registryValueLabel.Name = "registryValueLabel";
-            this.registryValueLabel.Size = new System.Drawing.Size(370, 20);
-            this.registryValueLabel.TabIndex = 5;
-            this.registryValueLabel.Text = "Registry value:";
-            //
+            // 
             // addWmiRegistryEventListenerButton
-            //
-            this.addWmiRegistryEventListenerButton.Location = new System.Drawing.Point(12, 159);
+            // 
+            resources.ApplyResources(this.addWmiRegistryEventListenerButton, "addWmiRegistryEventListenerButton");
             this.addWmiRegistryEventListenerButton.Name = "addWmiRegistryEventListenerButton";
-            this.addWmiRegistryEventListenerButton.Size = new System.Drawing.Size(370, 40);
-            this.addWmiRegistryEventListenerButton.TabIndex = 6;
-            this.addWmiRegistryEventListenerButton.Text = "Add wmi registry event listener";
             this.addWmiRegistryEventListenerButton.UseVisualStyleBackColor = true;
             this.addWmiRegistryEventListenerButton.Click += new System.EventHandler(this.addWmiRegistryEventListenerButton_Click);
-            //
+            // 
             // AddWmiRegistryEventListener
-            //
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            // 
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(394, 211);
             this.Controls.Add(this.addWmiRegistryEventListenerButton);
             this.Controls.Add(this.registryValueLabel);
             this.Controls.Add(this.registryPathLabel);
             this.Controls.Add(this.registryValueTextBox);
             this.Controls.Add(this.registryPathTextBox);
-            this.Controls.Add(this.registryEventLabel);
-            this.Controls.Add(this.registryEventComboBox);
+            this.Controls.Add(this.registryEventTypeLabel);
+            this.Controls.Add(this.registryEventTypeComboBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Location = new System.Drawing.Point(15, 15);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AddWmiRegistryEventListener";
-            this.Text = "Registry Monitror: Add Wmi Registry Event Listener";
             this.ResumeLayout(false);
             this.PerformLayout();
         }
 
-        private System.Windows.Forms.ComboBox registryEventComboBox;
-        private System.Windows.Forms.Label registryEventLabel;
+        private System.Windows.Forms.ComboBox registryEventTypeComboBox;
+        private System.Windows.Forms.Label registryEventTypeLabel;
         private System.Windows.Forms.TextBox registryPathTextBox;
         private System.Windows.Forms.TextBox registryValueTextBox;
         private System.Windows.Forms.Label registryPathLabel;

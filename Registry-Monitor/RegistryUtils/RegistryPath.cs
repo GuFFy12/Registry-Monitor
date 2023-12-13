@@ -29,13 +29,13 @@ namespace Registry_Monitor.RegistryUtils
             // Find the index of the first backslash in the pathText
             var firstSlashIndex = pathText.IndexOf('\\');
             // If no backslash is found, throw a FormatException
-            if (firstSlashIndex == -1) throw new FormatException("Registry hive not found");
+            if (firstSlashIndex == -1) throw new FormatException(RegistryUtils.RegistryPath_RegistryPath_Registry_hive_not_found);
 
             // Extract the registry hive text from the beginning of the pathText
             var registryHiveText = pathText.Substring(0, firstSlashIndex);
             // Try to parse the registry hive text into the RegistryHive enumeration
             if (!Enum.TryParse(registryHiveText, true, out RegistryHive registryHive))
-                throw new ArgumentException($"{registryHiveText} is not a valid registry hive", nameof(registryHiveText));
+                throw new ArgumentException(string.Format(RegistryUtils.RegistryPath_RegistryPath__0__is_not_a_valid_registry_hive, registryHiveText), nameof(registryHiveText));
 
             // Set properties based on the parsed registry hive and input parameters
             RegistryEvent = registryEvent;
@@ -62,7 +62,8 @@ namespace Registry_Monitor.RegistryUtils
                     RootPath = pathText.Substring(firstSlashIndex + 1);
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(registryHive), registryHive, $"The registry hive '{registryHive}' is not handled");
+                    throw new ArgumentOutOfRangeException(nameof(registryHive), registryHive,
+                        string.Format(RegistryUtils.RegistryPath_RegistryPath_The_registry_hive___0___is_not_handled, registryHive));
             }
         }
     }

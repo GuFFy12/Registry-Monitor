@@ -16,17 +16,17 @@ namespace Registry_Monitor
             InitializeComponent();
 
             // Populate the registryEventComboBox with values from the RegistryEvent enumeration
-            registryEventComboBox.Items.AddRange(Enum.GetValues(typeof(WmiRegistryEventListener.RegistryEvent)).Cast<object>().ToArray());
-            registryEventComboBox.Text = WmiRegistryEventListener.RegistryEvent.RegistryKeyChangeEvent.ToString();
+            registryEventTypeComboBox.Items.AddRange(Enum.GetValues(typeof(WmiRegistryEventListener.RegistryEvent)).Cast<object>().ToArray());
+            registryEventTypeComboBox.Text = WmiRegistryEventListener.RegistryEvent.RegistryKeyChangeEvent.ToString();
         }
 
         /**
          * Event handler for the registryEventComboBox's SelectedIndexChanged event.
          * Disables the value text box if the selected registry event is not RegistryValueChangeEvent.
          */
-        private void registryEventComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void registryEventTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            registryValueTextBox.ReadOnly = registryEventComboBox.Text != WmiRegistryEventListener.RegistryEvent.RegistryValueChangeEvent.ToString();
+            registryValueTextBox.ReadOnly = registryEventTypeComboBox.Text != WmiRegistryEventListener.RegistryEvent.RegistryValueChangeEvent.ToString();
         }
 
         /**
@@ -39,7 +39,7 @@ namespace Registry_Monitor
             {
                 // Attempt to create a new RegistryPath using the selected registry event and input values
                 var registryPath = new RegistryPath(
-                    (WmiRegistryEventListener.RegistryEvent)registryEventComboBox.SelectedIndex,
+                    (WmiRegistryEventListener.RegistryEvent)registryEventTypeComboBox.SelectedIndex,
                     registryPathTextBox.Text,
                     registryValueTextBox.Text
                 );

@@ -117,7 +117,228 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
+    <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"/>
+    <data name="openRegeditButton.Location" type="System.Drawing.Point, System.Drawing">
+        <value>660, 12</value>
+    </data>
+    <data name="openRegeditButton.Size" type="System.Drawing.Size, System.Drawing">
+        <value>122, 40</value>
+    </data>
+    <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+    <data name="openRegeditButton.TabIndex" type="System.Int32, mscorlib">
+        <value>3</value>
+    </data>
+    <data name="openRegeditButton.Text" xml:space="preserve">
+    <value>Open regedit</value>
+  </data>
+    <data name="&gt;&gt;openRegeditButton.Name" xml:space="preserve">
+    <value>openRegeditButton</value>
+  </data>
+    <data name="&gt;&gt;openRegeditButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+    <data name="&gt;&gt;openRegeditButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+    <data name="&gt;&gt;openRegeditButton.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+    <data name="startStopWmiRegistryEventListenersButton.Enabled" type="System.Boolean, mscorlib">
+        <value>False</value>
+    </data>
+    <data name="startStopWmiRegistryEventListenersButton.Location" type="System.Drawing.Point, System.Drawing">
+        <value>660, 58</value>
+    </data>
+    <data name="startStopWmiRegistryEventListenersButton.Size" type="System.Drawing.Size, System.Drawing">
+        <value>122, 63</value>
+    </data>
+    <data name="startStopWmiRegistryEventListenersButton.TabIndex" type="System.Int32, mscorlib">
+        <value>4</value>
+    </data>
+    <data name="startStopWmiRegistryEventListenersButton.Text" xml:space="preserve">
+    <value>Start / stop wmi registry event listeners</value>
+  </data>
+    <data name="&gt;&gt;startStopWmiRegistryEventListenersButton.Name" xml:space="preserve">
+    <value>startStopWmiRegistryEventListenersButton</value>
+  </data>
+    <data name="&gt;&gt;startStopWmiRegistryEventListenersButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+    <data name="&gt;&gt;startStopWmiRegistryEventListenersButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+    <data name="&gt;&gt;startStopWmiRegistryEventListenersButton.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+    <data name="registryWmiEventListenersLabel.Location" type="System.Drawing.Point, System.Drawing">
+        <value>12, 9</value>
+    </data>
+    <data name="registryWmiEventListenersLabel.Size" type="System.Drawing.Size, System.Drawing">
+        <value>536, 20</value>
+    </data>
+    <data name="registryWmiEventListenersLabel.TabIndex" type="System.Int32, mscorlib">
+        <value>12</value>
+    </data>
+    <data name="registryWmiEventListenersLabel.Text" xml:space="preserve">
+    <value>Wmi registry event listeners:</value>
+  </data>
+    <data name="&gt;&gt;registryWmiEventListenersLabel.Name" xml:space="preserve">
+    <value>registryWmiEventListenersLabel</value>
+  </data>
+    <data name="&gt;&gt;registryWmiEventListenersLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+    <data name="&gt;&gt;registryWmiEventListenersLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+    <data name="&gt;&gt;registryWmiEventListenersLabel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+    <data name="logRichTextBox.Location" type="System.Drawing.Point, System.Drawing">
+        <value>12, 173</value>
+    </data>
+    <data name="logRichTextBox.Size" type="System.Drawing.Size, System.Drawing">
+        <value>770, 386</value>
+    </data>
+    <data name="logRichTextBox.TabIndex" type="System.Int32, mscorlib">
+        <value>14</value>
+    </data>
+    <data name="logRichTextBox.Text" xml:space="preserve">
+    <value/>
+  </data>
+    <data name="&gt;&gt;logRichTextBox.Name" xml:space="preserve">
+    <value>logRichTextBox</value>
+  </data>
+    <data name="&gt;&gt;logRichTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+    <data name="&gt;&gt;logRichTextBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+    <data name="&gt;&gt;logRichTextBox.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+    <data name="saveLogCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+        <value>660, 127</value>
+    </data>
+    <data name="saveLogCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+        <value>122, 40</value>
+    </data>
+    <data name="saveLogCheckBox.TabIndex" type="System.Int32, mscorlib">
+        <value>19</value>
+    </data>
+    <data name="saveLogCheckBox.Text" xml:space="preserve">
+    <value>Save log to a file</value>
+  </data>
+    <data name="&gt;&gt;saveLogCheckBox.Name" xml:space="preserve">
+    <value>saveLogCheckBox</value>
+  </data>
+    <data name="&gt;&gt;saveLogCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+    <data name="&gt;&gt;saveLogCheckBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+    <data name="&gt;&gt;saveLogCheckBox.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+    <data name="addWmiRegistryEventListenerButton.Location" type="System.Drawing.Point, System.Drawing">
+        <value>554, 12</value>
+    </data>
+    <data name="addWmiRegistryEventListenerButton.Size" type="System.Drawing.Size, System.Drawing">
+        <value>100, 75</value>
+    </data>
+    <data name="addWmiRegistryEventListenerButton.TabIndex" type="System.Int32, mscorlib">
+        <value>20</value>
+    </data>
+    <data name="addWmiRegistryEventListenerButton.Text" xml:space="preserve">
+    <value>Add wmi registry event listener</value>
+  </data>
+    <data name="&gt;&gt;addWmiRegistryEventListenerButton.Name" xml:space="preserve">
+    <value>addWmiRegistryEventListenerButton</value>
+  </data>
+    <data name="&gt;&gt;addWmiRegistryEventListenerButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+    <data name="&gt;&gt;addWmiRegistryEventListenerButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+    <data name="&gt;&gt;addWmiRegistryEventListenerButton.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+    <data name="removeAllWmiRegistryEventListenersButton.Enabled" type="System.Boolean, mscorlib">
+        <value>False</value>
+    </data>
+    <data name="removeAllWmiRegistryEventListenersButton.Location" type="System.Drawing.Point, System.Drawing">
+        <value>554, 92</value>
+    </data>
+    <data name="removeAllWmiRegistryEventListenersButton.Size" type="System.Drawing.Size, System.Drawing">
+        <value>100, 75</value>
+    </data>
+    <data name="removeAllWmiRegistryEventListenersButton.TabIndex" type="System.Int32, mscorlib">
+        <value>21</value>
+    </data>
+    <data name="removeAllWmiRegistryEventListenersButton.Text" xml:space="preserve">
+    <value>Remove all wmi registry event listeners</value>
+  </data>
+    <data name="&gt;&gt;removeAllWmiRegistryEventListenersButton.Name" xml:space="preserve">
+    <value>removeAllWmiRegistryEventListenersButton</value>
+  </data>
+    <data name="&gt;&gt;removeAllWmiRegistryEventListenersButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+    <data name="&gt;&gt;removeAllWmiRegistryEventListenersButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+    <data name="&gt;&gt;removeAllWmiRegistryEventListenersButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+    <data name="registryWmiEventListenersRichTextBox.Location" type="System.Drawing.Point, System.Drawing">
+        <value>12, 32</value>
+    </data>
+    <data name="registryWmiEventListenersRichTextBox.Size" type="System.Drawing.Size, System.Drawing">
+        <value>536, 135</value>
+    </data>
+    <data name="registryWmiEventListenersRichTextBox.TabIndex" type="System.Int32, mscorlib">
+        <value>22</value>
+    </data>
+    <data name="registryWmiEventListenersRichTextBox.Text" xml:space="preserve">
+    <value/>
+  </data>
+    <data name="&gt;&gt;registryWmiEventListenersRichTextBox.Name" xml:space="preserve">
+    <value>registryWmiEventListenersRichTextBox</value>
+  </data>
+    <data name="&gt;&gt;registryWmiEventListenersRichTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+    <data name="&gt;&gt;registryWmiEventListenersRichTextBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+    <data name="&gt;&gt;registryWmiEventListenersRichTextBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+    <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+        <value>True</value>
+    </metadata>
     <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
         <value>True</value>
     </metadata>
+    <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+        <value>6, 13</value>
+    </data>
+    <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+        <value>794, 571</value>
+    </data>
+    <data name="$this.Location" type="System.Drawing.Point, System.Drawing">
+        <value>15, 15</value>
+    </data>
+    <data name="$this.Text" xml:space="preserve">
+    <value>Registry Monitor</value>
+  </data>
+    <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>MainForm</value>
+  </data>
+    <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>
